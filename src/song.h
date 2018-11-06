@@ -16,12 +16,15 @@ class Song{
 private:
 	int year;
 	string artist;
-	int view;
+	string songname;
 public:
 	Song();
-	void addSong(int year, string artist, int view);
-	void getyear(int y);
-	int setyear();
+	void setyear(int y);
+	void setartist(string y);
+	void setsongname(string s);
+	int getyear();
+	string getartist();
+	string getsongname();
 };
 
 //constructor
@@ -29,21 +32,32 @@ Song::Song()
 {
 	year = 0;
 	artist = "";
-	view = 0;
+	songname= "";
 }
-
-void Song::getyear(int y)
+void Song::setyear(int y)
 {
 	year = y;
 }
-int Song::setyear()
+void Song::setartist(string a)
+{
+	artist = a;
+}
+void Song::setsongname(string s)
+{
+	songname = s;
+}
+int Song::getyear()
 {
 	return year;
 }
-void Song::addSong(int year, string artist, int view)
+
+string Song::getartist()
 {
-
+	return artist;
 }
-
+string Song::getsongname()
+{
+	return songname;
+}
 
 #endif /* SONG_H_ */

@@ -11,6 +11,7 @@
 #include <string>
 #include "linklist.h"
 #include "song.h"
+#include <fstream>
 
 using namespace std;
 
@@ -34,6 +35,19 @@ int main() {
 	}
 	B.print();
 	Song a;
-	cout << a.setyear();
+	a.setyear(123);
+	cout << a.getyear();
+
+	ifstream fileA;
+	if(fileA.is_open())
+	{
+
+	}
+	else
+	{
+		cout << "Error openning fileA!";
+		exit(1);
+	}
+
 	return 0;
 }
