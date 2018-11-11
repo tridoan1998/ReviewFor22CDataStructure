@@ -12,41 +12,64 @@
 #include "linklist.h"
 #include "song.h"
 #include <fstream>
+#include <sstream>
+
+//#include <iomanip>
+
 
 using namespace std;
 
 int main() {
 	Linklist B;
 
-	for (int number = 2; number <= 100; number++)
-	{
-		int count = 0;
-		for (int divitor = 1; divitor <= number; divitor++)
-		{
-			if(number % divitor == 0)
-			{
-				count++;
-			}
-		}
-		if(count <= 2)
-		{
-			B.insertEnd(number);
-		}
-	}
-	B.print();
-	Song a;
-	a.setyear(123);
-	cout << a.getyear();
-
 	ifstream fileA;
+	//count lines of fileA
+	string line = "";
+	int count = 0;
+	fileA.open("txtfile.txt");
 	if(fileA.is_open())
 	{
-
+		while (!fileA.eof())
+		{
+			getline(fileA, line);
+			count++;
+		}
 	}
 	else
 	{
-		cout << "Error openning fileA!";
+		cout << "Error opening fileA!";
 		exit(1);
+	}
+	fileA.close();
+
+	//create song objects
+	Song song[count];
+	string datafromfile = "";
+	//set datas into song objects
+	//song[count].setsongname(title)
+
+	while(count >= 0)
+	{
+		fileA.open("txtfile.txt");
+		if(fileA.is_open())
+		{
+			while(!fileA.eof())
+			{
+				getline(fileA, datafromfile);
+				song[count].setsongname(datafromfile);
+				getline(fileA, datafromfile);
+				song[count].setartist(datafromfile);
+				getline(fileA, datafromfile);
+				song[count].setyear(datafromfile);
+				cout << count;
+			}
+		}
+		else
+		{
+			cout << "Error opening fileA!";
+			exit(1);
+		}
+	count--;
 	}
 
 	return 0;

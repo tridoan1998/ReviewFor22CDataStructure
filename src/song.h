@@ -14,15 +14,15 @@ using namespace std;
 
 class Song{
 private:
-	int year;
+	string year;
 	string artist;
 	string songname;
 public:
 	Song();
-	void setyear(int y);
+	void setyear(string y);
 	void setartist(string y);
 	void setsongname(string s);
-	int getyear();
+	string getyear();
 	string getartist();
 	string getsongname();
 };
@@ -30,11 +30,11 @@ public:
 //constructor
 Song::Song()
 {
-	year = 0;
+	year = "";
 	artist = "";
 	songname= "";
 }
-void Song::setyear(int y)
+void Song::setyear(string y)
 {
 	year = y;
 }
@@ -46,7 +46,7 @@ void Song::setsongname(string s)
 {
 	songname = s;
 }
-int Song::getyear()
+string Song::getyear()
 {
 	return year;
 }
