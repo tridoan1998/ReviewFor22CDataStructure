@@ -42,26 +42,30 @@ int main() {
 	}
 	fileA.close();
 
+	ifstream fileB;
 	//create song objects
 	Song song[count];
 	string datafromfile = "";
 	//set datas into song objects
 	//song[count].setsongname(title)
 
+	count = count/3 - 1;
+
+	int t = 0;
 	while(count >= 0)
 	{
-		fileA.open("txtfile.txt");
-		if(fileA.is_open())
+		fileB.open("txtfile.txt");
+		if(fileB.is_open())
 		{
-			while(!fileA.eof())
+			while(!fileB.eof())
 			{
-				getline(fileA, datafromfile);
-				song[count].setsongname(datafromfile);
-				getline(fileA, datafromfile);
-				song[count].setartist(datafromfile);
-				getline(fileA, datafromfile);
-				song[count].setyear(datafromfile);
-				cout << count;
+				getline(fileB, datafromfile);
+				song[t].setsongname(datafromfile);
+				getline(fileB, datafromfile);
+				song[t].setartist(datafromfile);
+				getline(fileB, datafromfile);
+				song[t].setyear(datafromfile);
+				t++;
 			}
 		}
 		else
@@ -70,6 +74,13 @@ int main() {
 			exit(1);
 		}
 	count--;
+	}
+
+	for(int i = 0; i < 3; i++)
+	{
+		cout << song[i].getsongname() << endl;
+		cout << song[i].getartist() << endl;
+		cout << song[i].getyear() << endl;
 	}
 
 	return 0;
