@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include "song.h"
 #ifndef LINKLIST_H_
 #define LINKLIST_H_
 
@@ -22,12 +23,14 @@ private:
 			Node* linknext;
 			Node* linkprevious;
 			int data;
+			Song* ptrsong;
 			//node constructor a.k.a instance of the struct
-			Node(int n)
+			Node(int n, Song* ptr)
 			{
 				data = n;
 				linknext = NULL;
 				linkprevious = NULL;
+				ptrsong = ptr;
 			}
 		};
 	Node* head;
@@ -37,8 +40,8 @@ private:
 public:
 	Linklist();
 
-	void insertStart(int ndata);
-	void insertEnd(int ndata);
+	void insertStart(int ndata, Song* ptr);
+	void insertEnd(int ndata, Song* ptr);
 	void print();
 };
 
@@ -47,17 +50,17 @@ Linklist::Linklist()
 	head = tail = iterator = NULL;
 	size = 0;
 }
-void Linklist::insertStart(int data)
+void Linklist::insertStart(int data, Song* ptr)
 {
 	if(size == 0)
 	{
-		Node* N = new Node(data);
+		Node* N = new Node(data, ptr);
 		head = tail = N;
 		size++;
 	}
 	else
 	{
-		Node* N = new Node(data);
+		Node* N = new Node(data, ptr);
 		N->linknext = head;		// point to next node
 		head->linkprevious = N; //	point to previous node
 		head = N;
@@ -65,17 +68,17 @@ void Linklist::insertStart(int data)
 	}
 }
 
-void Linklist::insertEnd(int data)
+void Linklist::insertEnd(int data, Song* ptr)
 {
 	if(size == 0)
 	{
-		Node* N = new Node(data);
+		Node* N = new Node(data, ptr);
 		head = tail = N;
 		size++;
 	}
 	else
 	{
-		Node* N = new Node(data);
+		Node* N = new Node(data, ptr);
 		N->linkprevious = tail;	//point back to previous node
 		tail->linknext = N;		//point forward to last node
 		tail = N;
@@ -89,6 +92,7 @@ void Linklist::print()
 	while(temp != NULL)
 	{
 		cout << temp->data;
+		cout << temp->ptrsong->getsongname();
 		temp = temp->linknext;
 		cout << endl;
 	}

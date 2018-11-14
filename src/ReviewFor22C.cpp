@@ -49,11 +49,9 @@ int main() {
 	//set datas into song objects
 	//song[count].setsongname(title)
 
-	count = count/3 - 1;
+	count = count/3;
 
 	int t = 0;
-	while(count >= 0)
-	{
 		fileB.open("txtfile.txt");
 		if(fileB.is_open())
 		{
@@ -73,15 +71,30 @@ int main() {
 			cout << "Error opening fileA!";
 			exit(1);
 		}
-	count--;
-	}
 
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i < count; i++)
 	{
 		cout << song[i].getsongname() << endl;
 		cout << song[i].getartist() << endl;
 		cout << song[i].getyear() << endl;
 	}
 
+
+	cout << endl;
+	Song* ptr[count];
+	for (int i = 0; i < count; i++)
+	{
+		ptr[i] = &song[i];
+	}
+	cout << ptr[0]->getsongname();
+	cout << ptr[1]->getsongname();
+	cout << ptr[2]->getsongname();
+	//B.insertStart(1);
+	//B.insertEnd(2);
+	//B.print();
 	return 0;
 }
+
+
+
+
