@@ -20,7 +20,6 @@
 using namespace std;
 
 int main() {
-	Linklist B;
 
 	ifstream fileA;
 	//count lines of fileA
@@ -86,12 +85,17 @@ int main() {
 	{
 		ptr[i] = &song[i];
 	}
-	cout << ptr[0]->getsongname();
-	cout << ptr[1]->getsongname();
-	cout << ptr[2]->getsongname();
-	//B.insertStart(1);
-	//B.insertEnd(2);
-	//B.print();
+
+	//insert these objects into link list
+
+	Linklist A;
+	cout << endl << endl << endl;
+	for (int i = 0 ; i <3; i++)
+		A.getdatafromsong(ptr[i]);
+
+	A.insertStart(2, ptr[0]);
+	A.insertEnd(3, ptr[1]);
+	A.getdatafromcurrentnode(2);
 	return 0;
 }
 
