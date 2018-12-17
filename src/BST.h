@@ -11,6 +11,21 @@
 #include <iostream>
 #include <string>
 
+template <typename T>
+class car{
+private:
+
+	int cardata;
+public:
+	void carinfo(T data);
+
+
+};
+template <typename T>
+void car<T>::carinfo(T data)
+{
+	cout << data;
+}
 class BST
 {
 private:
@@ -27,7 +42,69 @@ private:
 	};
 	Node* root;
 
-    /**Private helper functions*/
+	//this function search through the BST and find the location to put
+	//the newly added Node at
+	void insertNode(Node* root, int data);
+public:
+	//caller funciton
+	void insert(int data);
+
+};
+
+BST::BST()
+{
+	root = NULL;
+}
+
+void BST::insert(int data)
+{
+	if(root == NULL)
+	{
+		Node* N = new Node(data);
+		N->leftchild = N->rightchild = NULL;
+	}
+	else
+	{
+		insertNode(root, data);
+	}
+}
+void BST::insertNode(Node* root, int data)
+{
+	if(data == root->data)
+	{
+		return;
+	}
+	else if(data > root->data)
+	{
+		if(root->rightchild == NULL)
+		{
+			Node* N = new Node(data);
+			N->leftchild = N->rightchild = NULL;
+		}
+		else
+		{
+			insertNode(root->rightchild, data);
+		}
+	}
+	else if(data < root-> data)
+	{
+		if(root->leftchild == NULL)
+		{
+			Node* N =new Node(data);
+			N->leftchild = N->rightchild = NULL;
+		}
+		else
+		{
+			insertNode(root->leftchild, data);
+		}
+	}
+}
+
+
+
+/*
+
+    //Private helper functions
     void insertNode(Node* root, int data);
     //private helper function for insert
     //recursively inserts a value into the BST
@@ -55,11 +132,11 @@ private:
     //recursive helper function to search
     //returns whether the value is found in the tree
 
-    bstdata minimum(Node* root) const;
+    int minimum(Node* root) const;
     //recursive helper function to minimum
     //returns the minimum value in the tree
 
-    bstdata maximum(Node* root) const;
+    int maximum(Node* root) const;
     //recursive helper function to maximum
     //returns the maximum value in the tree
 
@@ -80,7 +157,7 @@ public:
 
 
 
-    /**constructors and destructor*/
+    //constructors and destructo
 
     BST();
     //Instantiates a new BST
@@ -94,13 +171,13 @@ public:
 
 
 
-    /**access functions*/
+    //access functions
 
-    bstdata minimum() const;
+    int minimum() const;
     //returns the minimum value in the BST
     //pre: !empty()
 
-    bstdata maximum() const;
+    int maximum() const;
     //returns the maximum value in the BST
     //pre: !empty()
 
@@ -110,21 +187,22 @@ public:
     int getSize() const;
     //returns the size of the tree
 
-    bstdata getRoot() const;
+    int getRoot() const;
     //returns the value stored at the root of the BST
     //pre: !isEmpty()
 
     int getHeight() const;
     //returns the height of the tree
 
-    bool search(bstdata data) const;
+    bool search(int data) const;
     //returns whether the data is found in the tree
     //pre: !isEmpty()
 
 
 
-    /**manipulation procedures*/
+    //manipulation procedures
 
+    void insert(int data);
     //inserts new data into the BST
 
     void remove(int data);
@@ -132,7 +210,7 @@ public:
     //pre: data is located in the tree
     //pre: !isEmpty()
 
-    /**additional functions*/
+    //additional functions
 
     void inOrderPrint(ostream& out) const;
     //calls the inOrderPrint function to print out the values
@@ -145,26 +223,7 @@ public:
     void postOrderPrint(ostream& out) const;
     //calls the postOrderPrint function to print out the values
     //stored in the BST
-};
 
-BST::BST()
-{
-	root = NULL;
-}
-void BST::insertdata(Node* root, int data)
-{
-	if(root == NULL)
-	{
-		Node* N = new Node(data);
-		N->leftchild = NULL;
-		N->rightchild = NULL;
-	}
-	else if(root->Node(data) > data)
-	{
-		insertdata(root->leftchild, data);
-		Node* N = new Node(data);
 
-	}
-}
-
+*/
 #endif /* BST_H_ */
