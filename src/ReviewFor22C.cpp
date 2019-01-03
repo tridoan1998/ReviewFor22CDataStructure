@@ -102,7 +102,9 @@ int main() {
 	A.insertEnd(3, ptr[1]);
 	A.getdatafromcurrentnode(2);
 
-
+	BST Tree;
+	Tree.insert(23);
+	Tree.print();
 	return 0;
 }
 

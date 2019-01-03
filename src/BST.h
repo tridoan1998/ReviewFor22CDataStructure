@@ -11,94 +11,59 @@
 #include <iostream>
 #include <string>
 
-template <typename T>
-class car{
-private:
-
-	int cardata;
-public:
-	void carinfo(T data);
-
-
-};
-template <typename T>
-void car<T>::carinfo(T data)
-{
-	cout << data;
-}
+template <typename bstdata>
 class BST
 {
 private:
 	struct Node
 	{
-		int data;
-		Node* rightchild;
+		bstdata data;
 		Node* leftchild;
-		Node(int d)
+		Node* rightchild;
+		Node(bstdata newdata)
 		{
-			data = d;
-			rightchild = leftchild = NULL;
+			data = newdata;
+			leftchild = rightchild = NULL;
 		}
 	};
 	Node* root;
-
-	//this function search through the BST and find the location to put
-	//the newly added Node at
-	void insertNode(Node* root, int data);
+	int size;
 public:
-	//caller funciton
-	void insert(int data);
-
+	//constructor
+	BST();
+	//destructor
+	~BST();
 };
 
-BST::BST()
+template <typename bstdata>
+BST<bstdata>::BST()
 {
 	root = NULL;
+	size = 0;
 }
 
-void BST::insert(int data)
+
+
+
+
+
+
+
+
+template <typename bstdata>
+BST<bstdata>::~BST()
 {
-	if(root == NULL)
-	{
-		Node* N = new Node(data);
-		N->leftchild = N->rightchild = NULL;
-	}
-	else
-	{
-		insertNode(root, data);
-	}
+
 }
-void BST::insertNode(Node* root, int data)
-{
-	if(data == root->data)
-	{
-		return;
-	}
-	else if(data > root->data)
-	{
-		if(root->rightchild == NULL)
-		{
-			Node* N = new Node(data);
-			N->leftchild = N->rightchild = NULL;
-		}
-		else
-		{
-			insertNode(root->rightchild, data);
-		}
-	}
-	else if(data < root-> data)
-	{
-		if(root->leftchild == NULL)
-		{
-			Node* N =new Node(data);
-			N->leftchild = N->rightchild = NULL;
-		}
-		else
-		{
-			insertNode(root->leftchild, data);
-		}
-	}
-}
+
+
+
+
+
+
+
+
+
 
 
 
